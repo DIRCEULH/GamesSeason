@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="icon" href="image/logo_correa.png" type="image/x-icon" />
+  <link rel="stylesheet" href="../../css/bootstrap.css" />
+  <link rel="stylesheet" href="../../css/font-awesome.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" type="text/css" href="css/css.css" >
+  <script src="../../js/angular.min.js"></script>
+  <script src="js/controller_jogos.js"></script>
+  <script src="../../js/dirPagination.js"></script>
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <script src="../../js/bootbox.min.js"></script>
+</head>
+<body style="font-family: verdana;" ng-app="myApp" ng-controller="angularJogos" >
+  <div class="container-fluid	">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><i class="fa fa-list-alt" aria-hidden="true"></i> Cadastro de Jogos</div><br><br/>
+      <div class="form-group col-md-2" >
+        <label for="placar">Placar</label>
+        <input maxlength="10" class="form-control" ng-model="placar" rows="10"></input>
+       <label for="mintemp">Minimo Temporada</label>
+        <input maxlength="10" class="form-control"  ng-model="mintemp" rows="10"></input>
+        <label for="maxtemp">Máximo Temporada</label>
+        <input maxlength="10" class="form-control" ng-model="maxtemp" rows="10"></input>
+      </div>
+      <div class="form-group col-md-2" >
+        <label for="recordemin">Quebra Recorde Min</label>
+        <input maxlength="10" class="form-control"  ng-model="recordemin" ></input>
+        <label for="recordemax">Quebra Recorde Max</label>
+        <input maxlength="10" class="form-control" ng-model="recordemax"></input>
+        <label for="recordemax">Partida</label>
+        <input type="number" maxlength="10" class="form-control" ng-model="partida"></input>
+        </div>
+      <div class="form-group col-md-2" >
+        <label for="button"></label><br>
+        <button type="button" class="btn btn-primary" ng-click="cadastrojogos()"> <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
+      </div><br><br/><br><br/><br><br/><br><br/><br><br/>
+    </div>
+    <div class="panel panel-primary">
+    <div class="panel-heading"><i class="fa fa-list-alt" aria-hidden="true"></i> Pontuações dos Jogos</div>
+    <table class="table table-bordered ">
+      <thead>
+        <tr>
+          <th width="6%" class="p-3 mb-2 bg-warning   text-white"><i class="fa fa-database" aria-hidden="true"></i> Partida</th>
+          <th width="10%" class="bg-warning">Placar <i class="fa fa-sort" aria-hidden="true"></i></th>
+          <th width="10%"  class="bg-warning">Temporada Minimo <i class="fa fa-sort" aria-hidden="true"></i></th>
+          <th width="10%"  class="bg-warning">Temporada Maximo <i class="fa fa-sort" aria-hidden="true"></i></th>
+          <th width="10%"  class="bg-warning">Recorde Minimo <i class="fa fa-sort" aria-hidden="true"></i></th>
+          <th width="10%" class="bg-warning">Recorde Maximo <i class="fa fa-sort" aria-hidden="true"></i></th>
+          <th width="10%" class="bg-warning">Data Cadastro <i class="fa fa-sort" aria-hidden="true"></i></th>
+        </tr>
+        <tr dir-paginate = "r in carregajogos   | itemsPerPage: 3 ">
+          <td style="text-align: center;"><font color="">{{r.partida}}</i></font></td>
+          <td style="text-align: center;"><font color="">{{r.placar}}</i></font></td>
+          <td style="text-align: center;" class="bg-default"><font color="">{{r.mintemp}} </font></td>
+          <td style="text-align: center;" >{{ r.maxtemp }}</td>
+          <td style="text-align: center;" >{{ r.recordemin }}</td>
+          <td style="text-align: center;" class="bg-default"><font color="">{{r.recordemax}}</font> </td>
+          <td style="text-align: center;" class="bg-default"><font color="">{{r.data_cadastro}}</font></td>
+      </tr>
+      <tr >
+        <th colspan="1" class="bg-warning" >jogos: <font color="green">{{TotalJogost}} </font></th>
+        <th colspan="1" class="bg-warning">Placar Maximo:<font color="green"> {{placart}}</font></th>
+        <th colspan="1" class="bg-warning">Min Temp:<font color="green"> {{mintempt}}</font></th>
+        <th colspan="1" class="bg-warning">Max Temp:<font color="green"> {{maxtempt}}</font></th>
+        <th colspan="1" class="bg-warning">Total R. Min:<font color="green"> {{recordemint}}</font></th>
+        <th colspan="1" class="bg-warning">Total R. Max: <font color="green"> {{recordemaxt}}</font></th>	
+     </tr>
+      </thead>
+    </table>
+    <dir-pagination-controls max-size="25" boundary-links="true"></dir-pagination-controls>
+
+</body>
+</html>
